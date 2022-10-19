@@ -10,7 +10,6 @@ namespace Masodik_Hazi_Feladat
     {
         static bool MegegyeznekE(char karakter1, char karakter2)
         {
-            string megoldas = "";
             if (karakter1 == '{' && karakter2 == '}')
             {
                 return true;
@@ -24,6 +23,74 @@ namespace Masodik_Hazi_Feladat
                 return true;
             }
             else if (karakter1 == '(' && karakter2 == ')')
+            {
+                return true;
+            }
+            else return false;
+        }
+        static bool CanBeValid(char karakter1, char karakter2)
+        {
+            if (karakter1 == '{' && karakter2 == '}')
+            {
+                return true;
+            }
+            else if (karakter1 == '{' && karakter2 == '{')
+            {
+                return true;
+            }
+            else if (karakter1 == '}' && karakter2 == '{')
+            {
+                return true;
+            }
+            else if (karakter1 == '}' && karakter2 == '}')
+            {
+                return true;
+            }
+            else if (karakter1 == '<' && karakter2 == '>')
+            {
+                return true;
+            }
+            else if (karakter1 == '<' && karakter2 == '<')
+            {
+                return true;
+            }
+            else if (karakter1 == '>' && karakter2 == '<')
+            {
+                return true;
+            }
+            else if (karakter1 == '>' && karakter2 == '>')
+            {
+                return true;
+            }
+            else if (karakter1 == '[' && karakter2 == ']')
+            {
+                return true;
+            }
+            else if (karakter1 == '[' && karakter2 == '[')
+            {
+                return true;
+            }
+            else if (karakter1 == ']' && karakter2 == '[')
+            {
+                return true;
+            }
+            else if (karakter1 == ']' && karakter2 == ']')
+            {
+                return true;
+            }
+            else if (karakter1 == '(' && karakter2 == ')')
+            {
+                return true;
+            }
+            else if (karakter1 == '(' && karakter2 == '(')
+            {
+                return true;
+            }
+            else if (karakter1 == ')' && karakter2 == '(')
+            {
+                return true;
+            }
+            else if (karakter1 == ')' && karakter2 == ')')
             {
                 return true;
             }
@@ -52,14 +119,84 @@ namespace Masodik_Hazi_Feladat
                     levagottSor += zarojelek[index];
                 }
             }
-            if (levagottSor.Length %2 == 1)
+            sor = levagottSor;
+            if (sor.Length % 2 == 1)
             {
                 megoldas = "Invalid";
             }
             else
             {
-            }
+                bool voltBenneCsere = true;
+                while (voltBenneCsere && sor.Length != 0)
+                {
+                    int elsoIndex = 0;
+                    int masodikIndex = 1;
+                    while (masodikIndex < sor.Length && !MegegyeznekE(sor[elsoIndex], sor[masodikIndex]))
+                    {
+                        elsoIndex++;
+                        masodikIndex++;
+                    }
+                    if (masodikIndex < sor.Length)
+                    {
+                        levagottSor = "";
+                        for (int i = 0; i < sor.Length; i++)
+                        {
+                            if (i != elsoIndex && i != masodikIndex)
+                            {
+                                levagottSor += sor[i];
+                            }
+                        }
+                        sor = levagottSor;
+                    }
+                    else
+                    {
+                        voltBenneCsere = false;
+                    }
 
+                }
+                if (sor.Length == 0)
+                {
+                    megoldas = "Valid";
+                }
+                else
+                {
+                    voltBenneCsere = true;
+                    while (voltBenneCsere && sor.Length != 0)
+                    {
+                        int elsoIndex = 0;
+                        int masodikIndex = 1;
+                        while (masodikIndex < sor.Length && !CanBeValid(sor[elsoIndex], sor[masodikIndex]))
+                        {
+                            elsoIndex++;
+                            masodikIndex++;
+                        }
+                        if (masodikIndex < sor.Length)
+                        {
+                            levagottSor = "";
+                            for (int i = 0; i < sor.Length; i++)
+                            {
+                                if (i != elsoIndex && i != masodikIndex)
+                                {
+                                    levagottSor += sor[i];
+                                }
+                            }
+                            sor = levagottSor;
+                        }
+                        else
+                        {
+                            voltBenneCsere = false;
+                        }
+                    }
+                    if (sor.Length == 0)
+                    {
+                        megoldas = "CanBeValid";
+                    }
+                    else
+                    {
+                        megoldas = "Invalid";
+                    }
+                }
+            }
             Console.WriteLine(megoldas);
             Console.ReadLine();
         }
