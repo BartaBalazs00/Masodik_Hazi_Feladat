@@ -10,91 +10,20 @@ namespace Masodik_Hazi_Feladat
     {
         static bool MegegyeznekE(char karakter1, char karakter2)
         {
-            if (karakter1 == '{' && karakter2 == '}')
-            {
-                return true;
-            }
-            else if (karakter1 == '<' && karakter2 == '>')
-            {
-                return true;
-            }
-            else if (karakter1 == '[' && karakter2 == ']')
-            {
-                return true;
-            }
-            else if (karakter1 == '(' && karakter2 == ')')
-            {
-                return true;
-            }
-            else return false;
+            
+            string zarojelek = "() [] {} <>";
+            string keresendo = ""+ karakter1 + karakter2;
+
+            return zarojelek.Contains(keresendo);
+            
         }
         static bool CanBeValid(char karakter1, char karakter2)
         {
-            if (karakter1 == '{' && karakter2 == '}')
-            {
-                return true;
-            }
-            else if (karakter1 == '{' && karakter2 == '{')
-            {
-                return true;
-            }
-            else if (karakter1 == '}' && karakter2 == '{')
-            {
-                return true;
-            }
-            else if (karakter1 == '}' && karakter2 == '}')
-            {
-                return true;
-            }
-            else if (karakter1 == '<' && karakter2 == '>')
-            {
-                return true;
-            }
-            else if (karakter1 == '<' && karakter2 == '<')
-            {
-                return true;
-            }
-            else if (karakter1 == '>' && karakter2 == '<')
-            {
-                return true;
-            }
-            else if (karakter1 == '>' && karakter2 == '>')
-            {
-                return true;
-            }
-            else if (karakter1 == '[' && karakter2 == ']')
-            {
-                return true;
-            }
-            else if (karakter1 == '[' && karakter2 == '[')
-            {
-                return true;
-            }
-            else if (karakter1 == ']' && karakter2 == '[')
-            {
-                return true;
-            }
-            else if (karakter1 == ']' && karakter2 == ']')
-            {
-                return true;
-            }
-            else if (karakter1 == '(' && karakter2 == ')')
-            {
-                return true;
-            }
-            else if (karakter1 == '(' && karakter2 == '(')
-            {
-                return true;
-            }
-            else if (karakter1 == ')' && karakter2 == '(')
-            {
-                return true;
-            }
-            else if (karakter1 == ')' && karakter2 == ')')
-            {
-                return true;
-            }
-            else return false;
+            string zarojelek = "{}{{}} <><<>> [][[]] ()(())";
+            string keresendo =  ""+karakter1 + karakter2;
+
+            return zarojelek.Contains(keresendo);
+            
         }
         static void Main(string[] args)
         {
